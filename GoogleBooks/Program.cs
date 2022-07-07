@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using GoogleBooks.Storage;
+
 namespace GoogleBooks
 {
     public class Program
@@ -9,6 +12,9 @@ namespace GoogleBooks
             // Add services to the container.
 
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<GoogleBooksContext>(
+                options => options.UseInMemoryDatabase("GoogleBooks"));
 
             var app = builder.Build();
 

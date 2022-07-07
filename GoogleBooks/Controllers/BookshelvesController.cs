@@ -20,7 +20,7 @@ public class BookshelvesController : ControllerBase
     }
 
     [HttpGet("{shelf}/user/{userId}")]
-    public async Task<ActionResult> GetBookshelf(string shelf, string userId)
+    public async Task<ActionResult> GetBookshelf(int shelf, string userId)
     {
         using var httpClient = new HttpClient();
         var result = await httpClient.GetAsync(
