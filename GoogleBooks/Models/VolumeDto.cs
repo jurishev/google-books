@@ -10,7 +10,7 @@ public class VolumeDto
     public string Title { get; init; }
     public string Authors { get; init; }
     public string Publisher { get; init; }
-    public DateTime PublishedDate { get; init; }
+    public string PublishedDate { get; init; }
     public string Description { get; init; }
     public string SmallThumbnail { get; init; }
     public string Thumbnail { get; init; }

@@ -29,7 +29,7 @@ public class VolumeInfo
     public string Title { get; init; }
     public IEnumerable<string> Authors { get; init; }
     public string Publisher { get; init; }
-    public DateTime PublishedDate { get; init; }
+    public string PublishedDate { get; init; }
     public string Description { get; init; }
     public ImageLinks ImageLinks { get; init; }
 }
@@ -38,4 +38,10 @@ public class ImageLinks
 {
     public string SmallThumbnail { get; init; }
     public string Thumbnail { get; init; }
+}
+
+public class VolumeList
+{
+    public IEnumerable<Volume> Items { get; init; }
+    public int TotalItems { get; init; }
 }

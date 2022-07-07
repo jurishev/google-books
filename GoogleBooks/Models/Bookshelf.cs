@@ -10,3 +10,8 @@ public class Bookshelf
     public int VolumeCount { get; init; }
     public DateTime VolumesLastUpdated { get; init; }
 }
+
+public class BookshelfList
+{
+    public IEnumerable<Bookshelf> Items { get; init; }
+}
