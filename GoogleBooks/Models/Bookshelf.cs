@@ -5,12 +5,8 @@ namespace GoogleBooks.Models;
 
 public class Bookshelf
 {
-    [Key]
     [JsonIgnore]
-    public string StorageId { get; init; }
-
-    [JsonIgnore]
-    public string UserId { get; init; }
+    public string UserId { get; set; }
 
     public int Id { get; init; }
     public string Title { get; init; }

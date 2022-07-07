@@ -10,4 +10,9 @@ public class GoogleBooksContext : DbContext
 
     public DbSet<Bookshelf> Bookshelves { get; set; }
     public DbSet<VolumeDto> Volumes { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.Entity<Bookshelf>().HasKey(nameof(Bookshelf.UserId), nameof(Bookshelf.Id));
+    }
 }

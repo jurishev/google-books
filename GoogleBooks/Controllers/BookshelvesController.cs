@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using GoogleBooks.Models;
+using GoogleBooks.Services;
 
 namespace GoogleBooks.Controllers;
 
@@ -7,27 +7,21 @@ namespace GoogleBooks.Controllers;
 [ApiController]
 public class BookshelvesController : ControllerBase
 {
-    [HttpGet("user/{userId}")]
-    public async Task<ActionResult> GetBookshelfList(string userId)
-    {
-        using var httpClient = new HttpClient();
-        var result = await httpClient.GetAsync(
-            $"https://www.googleapis.com/books/v1/users/{userId}/bookshelves");
+    private readonly IGoogleBooksService googleBooksService;
 
-        return result.IsSuccessStatusCode ?
-            this.Ok((await result.Content.ReadFromJsonAsync<BookshelfList>()).Items) :
-            this.BadRequest(await result.Content.ReadAsStringAsync());
+    public BookshelvesController(IGoogleBooksService service) => this.googleBooksService = service;
+
+    [HttpGet("user/{userId}")]
+    public async Task<ActionResult> GetBookshelves(string userId)
+    {
+        var bookshelves = await this.googleBooksService.GetBooksheves(userId);
+        return bookshelves is null ? this.NotFound() : this.Ok(bookshelves);
     }
 
     [HttpGet("{shelf}/user/{userId}")]
     public async Task<ActionResult> GetBookshelf(int shelf, string userId)
     {
-        using var httpClient = new HttpClient();
-        var result = await httpClient.GetAsync(
-            $"https://www.googleapis.com/books/v1/users/{userId}/bookshelves/{shelf}");
-
-        return result.IsSuccessStatusCode ?
-            this.Ok(await result.Content.ReadFromJsonAsync<Bookshelf>()) :
-            this.BadRequest(await result.Content.ReadAsStringAsync());
+        var bookshelf = await this.googleBooksService.GetBookshelf(shelf, userId);
+        return bookshelf is null ? this.NotFound() : this.Ok(bookshelf);
     }
 }

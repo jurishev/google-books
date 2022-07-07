@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using GoogleBooks.Models;
+using GoogleBooks.Services;
 
 namespace GoogleBooks.Controllers;
 
@@ -7,27 +7,21 @@ namespace GoogleBooks.Controllers;
 [ApiController]
 public class VolumesController : ControllerBase
 {
-    [HttpGet]
-    public async Task<ActionResult> GetVolumeList([FromQuery] string q)
-    {
-        using var httpClient = new HttpClient();
-        var result = await httpClient.GetAsync(
-            $"https://www.googleapis.com/books/v1/volumes?q={q}");
+    private readonly IGoogleBooksService googleBooksService;
 
-        return result.IsSuccessStatusCode ?
-            this.Ok((await result.Content.ReadFromJsonAsync<VolumeList>()).Items) :
-            this.BadRequest(await result.Content.ReadAsStringAsync());
+    public VolumesController(IGoogleBooksService service) => this.googleBooksService = service;
+
+    [HttpGet]
+    public async Task<ActionResult> GetVolumes([FromQuery] string q)
+    {
+        var volumes = await this.googleBooksService.GetVolumes(q);
+        return volumes is null ? this.NotFound() : this.Ok(volumes);
     }
 
     [HttpGet("{volumeId}")]
     public async Task<ActionResult> GetVolume(string volumeId)
     {
-        using var httpClient = new HttpClient();
-        var result = await httpClient.GetAsync(
-            $"https://www.googleapis.com/books/v1/volumes/{volumeId}");
-
-        return result.IsSuccessStatusCode ?
-            this.Ok(await result.Content.ReadFromJsonAsync<Volume>()) :
-            this.BadRequest(await result.Content.ReadAsStringAsync());
+        var volume = await this.googleBooksService.GetVolume(volumeId);
+        return volume is null ? this.NotFound() : this.Ok(volume);
     }
 }
