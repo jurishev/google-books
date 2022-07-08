@@ -31,48 +31,50 @@ export class EntityService {
     }
 
     getVolume(volumeId: string): void {
+        this.set(ViewState.Spinner);
         fetch(`api/volumes/${volumeId}`)
             .then(response => response.ok ? response.json() : undefined)
             .then(json => {
                 this.volumeSubject.next(json as Volume);
-                this.checkNoResults(json);
+                this.set(json ? ViewState.Volume : ViewState.NoResults);
             })
             .catch(error => console.error(error));
     }
 
     getVolumeList(q: string): void {
+        this.set(ViewState.Spinner);
         fetch(`api/volumes?q=${q}`)
             .then(response => response.ok ? response.json() : undefined)
             .then(json => {
                 this.volumeListSubject.next(json as Volume[]);
-                this.checkNoResults(json);
+                this.set(json ? ViewState.VolumeList : ViewState.NoResults);
             })
             .catch(error => console.error(error));
     }
 
     getBookshelf(shelf: string, userId: string): void {
+        this.set(ViewState.Spinner);
         fetch(`api/bookshelves/${shelf}/user/${userId}`)
             .then(response => response.ok ? response.json() : undefined)
             .then(json => {
                 this.bookshelfSubject.next(json as Bookshelf);
-                this.checkNoResults(json);
+                this.set(json ? ViewState.Bookshelf : ViewState.NoResults);
             })
             .catch(error => console.error(error));
     }
 
     getBookshelfList(userId: string): void {
+        this.set(ViewState.Spinner);
         fetch(`api/bookshelves/user/${userId}`)
             .then(response => response.ok ? response.json() : undefined)
             .then(json => {
                 this.bookshelfListSubject.next(json as Bookshelf[]);
-                this.checkNoResults(json);
+                this.set(json ? ViewState.BookshelfList : ViewState.NoResults);
             })
             .catch(error => console.error(error));
     }
 
-    private checkNoResults(json: any): void {
-        if (!json) {
-            this.viewStateService.set(ViewState.NoResults);
-        }
+    private set(state: ViewState): void {
+        this.viewStateService.set(state);
     }
 }

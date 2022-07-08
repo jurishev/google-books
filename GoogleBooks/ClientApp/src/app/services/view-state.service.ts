@@ -9,6 +9,7 @@ export class ViewStateService {
 
     private readonly viewStateSubject = new BehaviorSubject<ViewState>(ViewState.None);
 
+    isSpinner$ = this.trueFor(ViewState.Spinner);
     isNoResults$ = this.trueFor(ViewState.NoResults);
     isVolumeList$ = this.trueFor(ViewState.VolumeList);
     isVolume$ = this.trueFor(ViewState.Volume);
@@ -30,6 +31,7 @@ export class ViewStateService {
 
 export enum ViewState {
     None,
+    Spinner,
     NoResults,
     VolumeList,
     Volume,

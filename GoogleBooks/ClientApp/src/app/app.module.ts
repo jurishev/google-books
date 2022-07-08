@@ -10,6 +10,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { ControlsComponent } from './controls/controls.component';
@@ -19,6 +20,7 @@ import { BookshelfComponent } from './bookshelf/bookshelf.component';
 import { NoResultsComponent } from './no-results/no-results.component';
 
 import { JoinPipe } from './pipes/join.pipe';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +30,7 @@ import { JoinPipe } from './pipes/join.pipe';
         VolumeComponent,
         BookshelfComponent,
         NoResultsComponent,
+        SpinnerComponent,
         JoinPipe,
     ],
     imports: [
@@ -41,6 +44,7 @@ import { JoinPipe } from './pipes/join.pipe';
         MatFormFieldModule,
         MatInputModule,
         MatListModule,
+        MatProgressSpinnerModule,
     ],
     bootstrap: [AppComponent]
 })

@@ -4,6 +4,7 @@
     </div>
     <div class="views">
         <app-views></app-views>
+        <app-spinner *ngIf="state.isSpinner$ | async"></app-spinner>
         <app-no-results *ngIf="state.isNoResults$ | async"></app-no-results>
     </div>
 </div>
