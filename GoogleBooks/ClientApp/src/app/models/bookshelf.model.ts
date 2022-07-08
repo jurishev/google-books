@@ -1,4 +1,5 @@
 export interface Bookshelf {
+    userId: string,
     id: number,
     title: string,
     access: string,

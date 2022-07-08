@@ -44,4 +44,22 @@ export class EntityService {
     setVolume(volumeId: string): void {
         this.getVolume(volumeId);
     }
+
+    getBookshelf(shelf: number, userId: string): void {
+        fetch(`api/bookshelves/${shelf}/user/${userId}`)
+            .then(response => response.ok ? response.json() : null)
+            .then(json => this.bookshelfSubject.next(json as Bookshelf))
+            .catch(error => console.error(error));
+    }
+
+    getBookshelfList(userId: string): void {
+        fetch(`api/bookshelves/user/${userId}`)
+            .then(response => response.ok ? response.json() : null)
+            .then(json => this.bookshelfListSubject.next(json as Bookshelf[]))
+            .catch(error => console.error(error));
+    }
+
+    setBookshelf(shelf: number, userId: string): void {
+        this.getBookshelf(shelf, userId);
+    }
 }

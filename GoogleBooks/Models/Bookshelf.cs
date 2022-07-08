@@ -1,10 +1,7 @@
-﻿using System.Text.Json.Serialization;
-
-namespace GoogleBooks.Models;
+﻿namespace GoogleBooks.Models;
 
 public class Bookshelf
 {
-    [JsonIgnore]
     public string UserId { get; set; }
 
     public int Id { get; init; }

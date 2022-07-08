@@ -22,6 +22,8 @@ import { StateSelectorComponent } from './state-selector/state-selector.componen
 
 import { JoinPipe } from './pipes/join.pipe';
 import { YearPipe } from './pipes/year.pipe';
+import { BookshelfListControlsComponent } from './bookshelf-list-controls/bookshelf-list-controls.component';
+import { BookshelfListViewComponent } from './bookshelf-list-view/bookshelf-list-view.component';
 
 @NgModule({
     declarations: [
@@ -34,7 +36,9 @@ import { YearPipe } from './pipes/year.pipe';
         VolumeListControlsComponent,
         StateSelectorComponent,
         JoinPipe,
-        YearPipe
+        YearPipe,
+        BookshelfListControlsComponent,
+        BookshelfListViewComponent
     ],
     imports: [
         BrowserModule,

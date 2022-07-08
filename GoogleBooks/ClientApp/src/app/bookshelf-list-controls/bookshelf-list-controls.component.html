@@ -1,0 +1,8 @@
+<h2>Bookshelf list</h2>
+
+<mat-form-field>
+    <mat-label>User ID</mat-label>
+    <input matInput type="text" [(ngModel)]="userId" (keyup.enter)="search()">
+</mat-form-field>
+
+<button mat-raised-button color="primary" (click)="search()">Search</button>
