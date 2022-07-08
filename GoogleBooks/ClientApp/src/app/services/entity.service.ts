@@ -40,4 +40,8 @@ export class EntityService {
             .then(json => this.volumeListSubject.next(json as Volume[]))
             .catch(error => console.error(error));
     }
+
+    setVolume(volumeId: string): void {
+        this.getVolume(volumeId);
+    }
 }

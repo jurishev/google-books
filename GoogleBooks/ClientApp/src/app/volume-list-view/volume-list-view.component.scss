@@ -1,5 +1,7 @@
 .list-item {
     margin-bottom: 14px;
+    cursor: pointer;
+    display: flex;
 }
 
 .list-item:last-child{

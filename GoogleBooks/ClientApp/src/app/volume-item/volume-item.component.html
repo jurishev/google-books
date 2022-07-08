@@ -1,8 +1,16 @@
 <mat-card>
     <mat-card-title>{{ volume.volumeInfo.title }}</mat-card-title>
-    <mat-card-subtitle>Author</mat-card-subtitle>
-    <mat-card-content class="grid">
-        <div><img [src]="volume.volumeInfo.imageLinks.thumbnail"></div>
-        <div>{{ volume.volumeInfo.description }}</div>
+    <mat-card-subtitle>{{ volume.volumeInfo.authors | join }}</mat-card-subtitle>
+    <mat-card-content style="display: flex;">
+        <div style="margin-right: 14px;"><img [src]="volume.volumeInfo.imageLinks.thumbnail"></div>
+        <div>
+            <div class="details">
+                <div>Publisher: {{ volume.volumeInfo.publisher }}</div>
+                <div>Published Date: {{ volume.volumeInfo.publishedDate }}</div>
+                <div>ID: {{ volume.id }}</div>
+                <div>Link: <a [href]="volume.selfLink">{{ volume.selfLink }}</a></div>
+            </div>
+            <div>{{ volume.volumeInfo.description }}</div>
+        </div>
     </mat-card-content>
 </mat-card>

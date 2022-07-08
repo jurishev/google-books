@@ -20,6 +20,9 @@ import { VolumeListViewComponent } from './volume-list-view/volume-list-view.com
 import { VolumeListControlsComponent } from './volume-list-controls/volume-list-controls.component';
 import { StateSelectorComponent } from './state-selector/state-selector.component';
 
+import { JoinPipe } from './pipes/join.pipe';
+import { YearPipe } from './pipes/year.pipe';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -29,7 +32,9 @@ import { StateSelectorComponent } from './state-selector/state-selector.componen
         NoResultsComponent,
         VolumeListViewComponent,
         VolumeListControlsComponent,
-        StateSelectorComponent
+        StateSelectorComponent,
+        JoinPipe,
+        YearPipe
     ],
     imports: [
         BrowserModule,

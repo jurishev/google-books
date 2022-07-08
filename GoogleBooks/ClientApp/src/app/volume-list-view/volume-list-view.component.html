@@ -1,9 +1,16 @@
 <ng-container *ngIf="volumeList">
-    <mat-card *ngFor="let volume of volumeList" class="list-item">
-        <mat-card-title style="font-size: 18px;">
-            {{ volume.volumeInfo.title }}
-        </mat-card-title>
-        <mat-card-subtitle>Author</mat-card-subtitle>
+    <mat-card *ngFor="let volume of volumeList" class="list-item" (click)="selectVolume(volume.id)">
+        <div style="margin-right: 14px;"><img [src]="volume.volumeInfo.imageLinks.thumbnail"></div>
+        <div>
+            <mat-card-title style="font-size: 18px;">
+                {{ volume.volumeInfo.title }}
+            </mat-card-title>
+            <mat-card-subtitle>
+                {{ volume.volumeInfo.authors | join }}&nbsp;&middot;&nbsp;
+                {{ volume.volumeInfo.publishedDate | year }}&nbsp;&middot;&nbsp;
+                {{ volume.volumeInfo.publisher }}
+            </mat-card-subtitle>
+        </div>
     </mat-card>
 </ng-container>
 <ng-container *ngIf="volumeList === null">
