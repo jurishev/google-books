@@ -1,0 +1,41 @@
+.work-area {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 240px auto;
+}
+
+.controls {
+    background-color: whitesmoke;
+    padding: 20px;
+    overflow: auto;
+}
+
+.controls::-webkit-scrollbar {
+    background: silver;
+    width: 8px;
+}
+
+.controls::-webkit-scrollbar-thumb {
+    background: gainsboro;
+}
+
+.views {
+    background-color: silver;
+    padding: 20px;
+    overflow: auto;
+}
+
+.views::-webkit-scrollbar {
+    background: silver;
+    width: 8px;
+    height: 8px;
+}
+
+.views::-webkit-scrollbar-thumb {
+    background: grey;
+}
+
+.views::-webkit-scrollbar-corner {
+    background: silver;
+}

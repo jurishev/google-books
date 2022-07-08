@@ -1,0 +1,6 @@
+<mat-form-field>
+    <mat-label>volumeId</mat-label>
+    <input matInput type="text" [(ngModel)]="volumeId" (keyup.enter)="search()">
+</mat-form-field>
+
+<button mat-raised-button color="primary" (click)="search()">Search</button>
