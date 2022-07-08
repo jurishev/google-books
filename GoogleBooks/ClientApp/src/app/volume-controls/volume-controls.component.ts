@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { EntityService } from '../services/entity.service';
 
 @Component({
@@ -6,13 +7,21 @@ import { EntityService } from '../services/entity.service';
     templateUrl: './volume-controls.component.html',
     styleUrls: ['./volume-controls.component.scss']
 })
-export class VolumeControlsComponent {
+export class VolumeControlsComponent implements OnDestroy {
+
+    private readonly volumeSubscription: Subscription;
 
     volumeId = "";
 
     constructor(
         private readonly entityService: EntityService
-    ) { }
+    ) {
+        this.volumeSubscription = this.entityService.volume$.subscribe(v => this.volumeId = v ? v.id : "");
+    }
+
+    ngOnDestroy(): void {
+        this.volumeSubscription.unsubscribe();
+    }
 
     search(): void {
         if (this.volumeId) {

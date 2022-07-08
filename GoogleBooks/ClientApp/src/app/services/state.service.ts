@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators'
 })
 export class StateService {
 
-    private readonly stateSubject = new BehaviorSubject<State>(State.VolumeList);
+    private readonly stateSubject = new BehaviorSubject<State>(State.None);
 
     isVolumeList$ = this.trueFor(State.VolumeList);
     isVolume$ = this.trueFor(State.Volume);
