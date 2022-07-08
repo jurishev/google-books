@@ -19,8 +19,8 @@ public class Volume
         Publisher = this.VolumeInfo.Publisher,
         PublishedDate = this.VolumeInfo.PublishedDate,
         Description = this.VolumeInfo.Description,
-        SmallThumbnail = this.VolumeInfo.ImageLinks.SmallThumbnail,
-        Thumbnail = this.VolumeInfo.ImageLinks.Thumbnail
+        SmallThumbnail = this.VolumeInfo.ImageLinks?.SmallThumbnail,
+        Thumbnail = this.VolumeInfo.ImageLinks?.Thumbnail
     };
 }
 

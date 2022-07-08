@@ -1,0 +1,11 @@
+<ng-container *ngIf="volumeList">
+    <mat-card *ngFor="let volume of volumeList" class="list-item">
+        <mat-card-title style="font-size: 18px;">
+            {{ volume.volumeInfo.title }}
+        </mat-card-title>
+        <mat-card-subtitle>Author</mat-card-subtitle>
+    </mat-card>
+</ng-container>
+<ng-container *ngIf="volumeList === null">
+    <app-no-results></app-no-results>
+</ng-container>

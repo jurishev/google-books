@@ -16,6 +16,9 @@ import { VolumeViewComponent } from './volume-view/volume-view.component';
 import { VolumeControlsComponent } from './volume-controls/volume-controls.component';
 import { VolumeItemComponent } from './volume-item/volume-item.component';
 import { NoResultsComponent } from './no-results/no-results.component';
+import { VolumeListViewComponent } from './volume-list-view/volume-list-view.component';
+import { VolumeListControlsComponent } from './volume-list-controls/volume-list-controls.component';
+import { StateSelectorComponent } from './state-selector/state-selector.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +26,10 @@ import { NoResultsComponent } from './no-results/no-results.component';
         VolumeViewComponent,
         VolumeControlsComponent,
         VolumeItemComponent,
-        NoResultsComponent
+        NoResultsComponent,
+        VolumeListViewComponent,
+        VolumeListControlsComponent,
+        StateSelectorComponent
     ],
     imports: [
         BrowserModule,

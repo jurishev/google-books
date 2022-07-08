@@ -1,0 +1,8 @@
+<h2>Volume list</h2>
+
+<mat-form-field>
+    <mat-label>Query string</mat-label>
+    <input matInput type="text" [(ngModel)]="q" (keyup.enter)="search()">
+</mat-form-field>
+
+<button mat-raised-button color="primary" (click)="search()">Search</button>

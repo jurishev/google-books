@@ -1,0 +1,13 @@
+.button-list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+button {
+    margin-bottom: 14px;
+}
+
+button:last-child {
+    margin-bottom: 0;
+}

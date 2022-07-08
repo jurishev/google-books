@@ -12,12 +12,12 @@ export class EntityService {
     private readonly bookshelfListSubject = new BehaviorSubject<Bookshelf[]>([]);
 
     private readonly volumeSubject = new BehaviorSubject<Volume | null | undefined>(undefined);
-    private readonly volumeListSubject = new BehaviorSubject<Volume[]>([]);
+    private readonly volumeListSubject = new BehaviorSubject<Volume[] | null | undefined>(undefined);
 
     bookshelfList$: Observable<Bookshelf[]>;
     bookshelf$: Observable<Bookshelf | null | undefined>;
 
-    volumeList$: Observable<Volume[]>;
+    volumeList$: Observable<Volume[] | null | undefined>;
     volume$: Observable<Volume | null | undefined>;
 
     constructor() {
@@ -31,6 +31,13 @@ export class EntityService {
         fetch(`api/volumes/${volumeId}`)
             .then(response => response.ok ? response.json() : null)
             .then(json => this.volumeSubject.next(json as Volume))
+            .catch(error => console.error(error));
+    }
+
+    getVolumeList(q: string): void {
+        fetch(`api/volumes?q=${q}`)
+            .then(response => response.ok ? response.json() : null)
+            .then(json => this.volumeListSubject.next(json as Volume[]))
             .catch(error => console.error(error));
     }
 }
