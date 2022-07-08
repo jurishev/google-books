@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card *ngIf="volume">
     <mat-card-title>{{ volume.volumeInfo.title }}</mat-card-title>
     <mat-card-subtitle>{{ volume.volumeInfo.authors | join }}</mat-card-subtitle>
     <mat-card-content style="display: flex;">

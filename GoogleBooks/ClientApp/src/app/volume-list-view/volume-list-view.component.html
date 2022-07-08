@@ -1,8 +1,0 @@
-<ng-container *ngIf="volumeList">
-    <div class="list-item" *ngFor="let volume of volumeList" (click)="selectVolume(volume.id)">
-        <app-volume-item [volume]="volume"></app-volume-item>
-    </div>
-</ng-container>
-<ng-container *ngIf="volumeList === null">
-    <app-no-results></app-no-results>
-</ng-container>

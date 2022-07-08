@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from "@angular/forms";
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from "@angular/forms";
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,40 +12,28 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 
 import { AppComponent } from './app.component';
-import { VolumeViewComponent } from './volume-view/volume-view.component';
-import { VolumeControlsComponent } from './volume-controls/volume-controls.component';
-import { VolumeItemComponent } from './volume-item/volume-item.component';
+import { ControlsComponent } from './controls/controls.component';
+import { ViewsComponent } from './views/views.component';
+import { VolumeComponent } from './volume/volume.component';
+import { BookshelfComponent } from './bookshelf/bookshelf.component';
 import { NoResultsComponent } from './no-results/no-results.component';
-import { VolumeListViewComponent } from './volume-list-view/volume-list-view.component';
-import { VolumeListControlsComponent } from './volume-list-controls/volume-list-controls.component';
-import { StateSelectorComponent } from './state-selector/state-selector.component';
 
 import { JoinPipe } from './pipes/join.pipe';
-import { YearPipe } from './pipes/year.pipe';
-import { BookshelfListControlsComponent } from './bookshelf-list-controls/bookshelf-list-controls.component';
-import { BookshelfListViewComponent } from './bookshelf-list-view/bookshelf-list-view.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        VolumeViewComponent,
-        VolumeControlsComponent,
-        VolumeItemComponent,
+        ControlsComponent,
+        ViewsComponent,
+        VolumeComponent,
+        BookshelfComponent,
         NoResultsComponent,
-        VolumeListViewComponent,
-        VolumeListControlsComponent,
-        StateSelectorComponent,
         JoinPipe,
-        YearPipe,
-        BookshelfListControlsComponent,
-        BookshelfListViewComponent
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,
-        BrowserModule,
-        BrowserAnimationsModule,
         MatIconModule,
         MatButtonModule,
         MatCardModule,

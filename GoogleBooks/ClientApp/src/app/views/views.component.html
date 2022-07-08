@@ -1,0 +1,19 @@
+<ng-container *ngIf="state.isVolumeList$ | async">
+    <div class="list-item" *ngFor="let volume of volumeList">
+        <app-volume [volume]="volume"></app-volume>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="state.isVolume$ | async">
+    <app-volume [volume]="volume"></app-volume>
+</ng-container>
+
+<ng-container *ngIf="state.isBookshelfList$ | async">
+    <div class="list-item" *ngFor="let bookshelf of bookshelfList">
+        <app-bookshelf [bookshelf]="bookshelf"></app-bookshelf>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="state.isBookshelf$ | async">
+    <app-bookshelf [bookshelf]="bookshelf"></app-bookshelf>
+</ng-container>

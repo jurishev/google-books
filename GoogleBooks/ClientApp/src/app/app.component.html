@@ -1,16 +1,9 @@
 <div class="work-area">
     <div class="controls">
-        <app-state-selector></app-state-selector>
-
-        <app-volume-list-controls *ngIf="state.isVolumeList$ | async"></app-volume-list-controls>
-        <app-volume-controls *ngIf="state.isVolume$ | async"></app-volume-controls>
-
-        <app-bookshelf-list-controls *ngIf="state.isBookshelfList$ | async"></app-bookshelf-list-controls>
+        <app-controls></app-controls>
     </div>
     <div class="views">
-        <app-volume-list-view *ngIf="state.isVolumeList$ | async"></app-volume-list-view>
-        <app-volume-view *ngIf="state.isVolume$ | async"></app-volume-view>
-
-        <app-bookshelf-list-view *ngIf="state.isBookshelfList$ | async"></app-bookshelf-list-view>
+        <app-views></app-views>
+        <app-no-results *ngIf="state.isNoResults$ | async"></app-no-results>
     </div>
 </div>

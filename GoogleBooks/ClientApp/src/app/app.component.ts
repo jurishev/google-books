@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { StateService } from './services/state.service';
+import { ViewStateService } from './services/view-state.service';
 
 @Component({
     selector: 'app-root',
@@ -11,6 +11,6 @@ export class AppComponent {
     title = 'GoogleBooks';
 
     constructor(
-        readonly state: StateService
+        readonly state: ViewStateService
     ) { }
 }
