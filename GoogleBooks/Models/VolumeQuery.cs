@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace GoogleBooks.Models;
+﻿namespace GoogleBooks.Models;
 
 public class VolumeQuery
 {

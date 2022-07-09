@@ -8,9 +8,13 @@
         <div>
             <div class="details">
                 <div>Publisher: {{ volume.volumeInfo?.publisher }}</div>
-                <div>Published Date: {{ volume.volumeInfo?.publishedDate }}</div>
+                <div>Published date: {{ volume.volumeInfo?.publishedDate }}</div>
+                <div>Categories: {{ volume.volumeInfo?.categories | join }}</div>
                 <div>ID: {{ volume.id }}</div>
-                <div>Link: <a [href]="volume.selfLink">{{ volume.selfLink }}</a></div>
+                <div *ngIf="volume.volumeInfo?.previewLink">
+                    <a [href]="volume.volumeInfo.previewLink">Preview link</a>
+                </div>
+                <div><a [href]="volume.selfLink">API link</a></div>
             </div>
             <div *ngIf="volume.volumeInfo?.description" style="margin-top: 14px;">
                 {{ volume.volumeInfo?.description }}

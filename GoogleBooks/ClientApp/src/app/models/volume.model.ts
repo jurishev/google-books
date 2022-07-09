@@ -1,6 +1,5 @@
 export interface Volume {
     id: string,
-    etag: string,
     selfLink: string,
     volumeInfo: {
         title: string,
@@ -8,6 +7,8 @@ export interface Volume {
         publisher: string,
         publishedDate: string,
         description: string,
+        categories: string[],
+        previewLink: string,
         imageLinks: {
             smallThumbnail: string,
             thumbnail: string

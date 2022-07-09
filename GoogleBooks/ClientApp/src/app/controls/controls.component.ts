@@ -23,6 +23,7 @@ export class ControlsComponent {
         return !this.volumeId &&
             !this.volumeQuery.title &&
             !this.volumeQuery.author &&
+            !this.volumeQuery.subject &&
             !this.volumeQuery.publisher;
     }
 

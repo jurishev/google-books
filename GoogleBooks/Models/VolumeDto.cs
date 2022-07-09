@@ -12,13 +12,14 @@ public class VolumeDto
     public string Publisher { get; init; }
     public string PublishedDate { get; init; }
     public string Description { get; init; }
+    public string Categories { get; init; }
+    public string PreviewLink { get; init; }
     public string SmallThumbnail { get; init; }
     public string Thumbnail { get; init; }
 
     public Volume GetVolume() => new()
     {
         Id = this.Id,
-        Etag = this.Etag,
         SelfLink = this.SelfLink,
         VolumeInfo = new VolumeInfo
         {
@@ -27,6 +28,8 @@ public class VolumeDto
             Publisher = this.Publisher,
             PublishedDate = this.PublishedDate,
             Description = this.Description,
+            PreviewLink = this.PreviewLink,
+            Categories = JsonSerializer.Deserialize<IEnumerable<string>>(this.Categories),
             ImageLinks = new ImageLinks
             {
                 SmallThumbnail = this.SmallThumbnail,

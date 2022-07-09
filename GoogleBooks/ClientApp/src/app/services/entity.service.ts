@@ -68,6 +68,7 @@ export class EntityService {
         }
         addTerm("title", query.title);
         addTerm("author", query.author);
+        addTerm("subject", query.subject);
         addTerm("publisher", query.publisher);
         return terms.join("&");
     }

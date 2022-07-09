@@ -38,7 +38,8 @@ public class EntityFrameworkGoogleBooksStorage : IGoogleBooksStorage
         var volumes = from dto in this.context.Volumes
                       where Has(dto.Title, query.Title) &&
                       Has(dto.Authors, query.Author) &&
-                      Has(dto.Publisher, query.Publisher)
+                      Has(dto.Publisher, query.Publisher) &&
+                      Has(dto.Categories, query.Subject)
                       select dto.GetVolume();
 
         return volumes.Any() ? volumes : null;
