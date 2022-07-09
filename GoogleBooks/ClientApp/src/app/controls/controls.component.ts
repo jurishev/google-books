@@ -24,7 +24,8 @@ export class ControlsComponent {
             !this.volumeQuery.title &&
             !this.volumeQuery.author &&
             !this.volumeQuery.subject &&
-            !this.volumeQuery.publisher;
+            !this.volumeQuery.publisher &&
+            !this.volumeQuery.isbn;
     }
 
     getVolumes(): void {

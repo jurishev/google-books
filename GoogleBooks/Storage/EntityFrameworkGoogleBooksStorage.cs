@@ -1,4 +1,5 @@
 ﻿using GoogleBooks.Models;
+using System.Text.Json;
 
 namespace GoogleBooks.Storage;
 
@@ -39,7 +40,8 @@ public class EntityFrameworkGoogleBooksStorage : IGoogleBooksStorage
                       where Has(dto.Title, query.Title) &&
                       Has(dto.Authors, query.Author) &&
                       Has(dto.Publisher, query.Publisher) &&
-                      Has(dto.Categories, query.Subject)
+                      Has(dto.Categories, query.Subject) &&
+                      HasIsbn(dto.IndustryIdentifiers, query.Isbn)
                       select dto.GetVolume();
 
         return volumes.Any() ? volumes : null;
@@ -47,4 +49,9 @@ public class EntityFrameworkGoogleBooksStorage : IGoogleBooksStorage
 
     private static bool Has(string field, string value) => string.IsNullOrEmpty(value) ||
         (!string.IsNullOrEmpty(field) && field.Contains(value, StringComparison.OrdinalIgnoreCase));
+
+    private static bool HasIsbn(string field, string value) => string.IsNullOrEmpty(value) ||
+        (!string.IsNullOrEmpty(field) &&
+            JsonSerializer.Deserialize<IEnumerable<IndustryIdentifier>>(field)
+                .Where(id => id.Type.StartsWith("ISBN") && id.Identifier == value).Any());
 }

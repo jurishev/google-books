@@ -70,6 +70,7 @@ export class EntityService {
         addTerm("author", query.author);
         addTerm("subject", query.subject);
         addTerm("publisher", query.publisher);
+        addTerm("isbn", query.isbn);
         return terms.join("&");
     }
 
