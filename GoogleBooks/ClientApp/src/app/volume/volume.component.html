@@ -2,7 +2,9 @@
     <mat-card-title>{{ volume.volumeInfo?.title }}</mat-card-title>
     <mat-card-subtitle>{{ volume.volumeInfo?.authors | join }}</mat-card-subtitle>
     <mat-card-content style="display: flex;">
-        <div style="margin-right: 14px;"><img [src]="volume.volumeInfo?.imageLinks?.thumbnail"></div>
+        <div style="margin-right: 14px;" *ngIf="volume.volumeInfo.imageLinks">
+            <img [src]="volume.volumeInfo.imageLinks?.thumbnail">
+        </div>
         <div>
             <div class="details">
                 <div>Publisher: {{ volume.volumeInfo?.publisher }}</div>
@@ -10,7 +12,9 @@
                 <div>ID: {{ volume.id }}</div>
                 <div>Link: <a [href]="volume.selfLink">{{ volume.selfLink }}</a></div>
             </div>
-            <div>{{ volume.volumeInfo?.description }}</div>
+            <div *ngIf="volume.volumeInfo?.description" style="margin-top: 14px;">
+                {{ volume.volumeInfo?.description }}
+            </div>
         </div>
     </mat-card-content>
 </mat-card>

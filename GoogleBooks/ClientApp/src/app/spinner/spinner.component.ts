@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
 
 @Component({
     selector: 'app-spinner',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
     styleUrls: ['./spinner.component.scss']
 })
 export class SpinnerComponent {
+
+    color: ThemePalette = "accent";
 }
