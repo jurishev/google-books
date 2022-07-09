@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { VolumeQuery } from '../models/volume-query.model';
 import { EntityService } from '../services/entity.service';
-import { ViewState, ViewStateService } from '../services/view-state.service';
 
 @Component({
     selector: 'app-controls',
@@ -9,7 +9,8 @@ import { ViewState, ViewStateService } from '../services/view-state.service';
 })
 export class ControlsComponent {
 
-    q = "";
+    volumeQuery = new VolumeQuery();
+
     volumeId = "";
     userId = "";
     shelf = "";
@@ -18,9 +19,15 @@ export class ControlsComponent {
         private readonly entityService: EntityService
     ) { }
 
+    isGetVolumeListDisabled(): boolean {
+        return !this.volumeQuery.title &&
+            !this.volumeQuery.author &&
+            !this.volumeQuery.publisher;
+    }
+
     getVolumeList(): void {
-        if (this.q) {
-            this.entityService.getVolumeList(this.q);
+        if (!this.isGetVolumeListDisabled()) {
+            this.entityService.getVolumeList(this.volumeQuery);
         }
     }
 

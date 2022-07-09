@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using GoogleBooks.Models;
 using GoogleBooks.Services;
 
 namespace GoogleBooks.Controllers;
@@ -12,9 +13,9 @@ public class VolumesController : ControllerBase
     public VolumesController(IGoogleBooksService service) => this.googleBooksService = service;
 
     [HttpGet]
-    public async Task<ActionResult> GetVolumes([FromQuery] string q)
+    public async Task<ActionResult> GetVolumes([FromQuery] VolumeQuery query)
     {
-        var volumes = await this.googleBooksService.GetVolumes(q);
+        var volumes = await this.googleBooksService.GetVolumes(query);
         return volumes is null ? this.NotFound() : this.Ok(volumes);
     }
 

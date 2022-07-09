@@ -58,14 +58,19 @@ namespace GoogleBooks.Services
             return volume;
         }
 
-        public async Task<IEnumerable<Volume>> GetVolumes(string q)
+        public async Task<IEnumerable<Volume>> GetVolumes(VolumeQuery query)
         {
-            var volumes = (await this.CallGoogleApi<VolumeList>($"https://www.googleapis.com/books/v1/volumes?q={q}"))?.Items;
-            if (volumes != null)
+            var volumes = this.storage.GetVolumeList(query);
+            if (volumes is null)
             {
-                foreach (var volume in volumes)
+                var terms = GetTerms(query);
+                volumes = (await this.CallGoogleApi<VolumeList>($"https://www.googleapis.com/books/v1/volumes?q={terms}"))?.Items;
+                if (volumes != null)
                 {
-                    this.storage.AddVolume(volume);
+                    foreach (var volume in volumes)
+                    {
+                        this.storage.AddVolume(volume);
+                    }
                 }
             }
 
@@ -76,6 +81,27 @@ namespace GoogleBooks.Services
         {
             var result = await this.httpClient.GetAsync(uri);
             return result.IsSuccessStatusCode ? await result.Content.ReadFromJsonAsync<T>() : default;
+        }
+
+        private static string GetTerms(VolumeQuery query)
+        {
+            var terms = new List<string>();
+
+            AddTerm("intitle", query.Title, terms);
+            AddTerm("inauthor", query.Author, terms);
+            AddTerm("inpublisher", query.Publisher, terms);
+            AddTerm("subject", query.Subject, terms);
+            AddTerm("isbn", query.Isbn, terms);
+
+            return string.Join('+', terms);
+        }
+
+        private static void AddTerm(string key, string value, List<string> terms)
+        {
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                terms.Add($"{key}:{value}");
+            }
         }
     }
 }

@@ -2,8 +2,8 @@
     <mat-card-title>{{ volume.volumeInfo?.title }}</mat-card-title>
     <mat-card-subtitle>{{ volume.volumeInfo?.authors | join }}</mat-card-subtitle>
     <mat-card-content style="display: flex;">
-        <div style="margin-right: 14px;" *ngIf="volume.volumeInfo.imageLinks">
-            <img [src]="volume.volumeInfo.imageLinks?.thumbnail">
+        <div style="margin-right: 14px;" *ngIf="volume.volumeInfo?.imageLinks?.thumbnail">
+            <img [src]="volume.volumeInfo.imageLinks.thumbnail">
         </div>
         <div>
             <div class="details">

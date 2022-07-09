@@ -9,4 +9,6 @@ public interface IGoogleBooksStorage
 
     Bookshelf GetBookshelf(int shelf, string userId);
     Volume GetVolume(string volumeId);
+
+    IEnumerable<Volume> GetVolumeList(VolumeQuery query);
 }

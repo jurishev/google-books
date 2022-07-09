@@ -8,5 +8,5 @@ public interface IGoogleBooksService
     Task<IEnumerable<Bookshelf>> GetBooksheves(string userId);
 
     Task<Volume> GetVolume(string volumeId);
-    Task<IEnumerable<Volume>> GetVolumes(string q);
+    Task<IEnumerable<Volume>> GetVolumes(VolumeQuery query);
 }
