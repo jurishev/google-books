@@ -1,9 +1,16 @@
-<mat-card *ngIf="bookshelf">
-    <mat-card-title>{{ bookshelf.title }}</mat-card-title>
-    <div>ID: {{ bookshelf.id }}</div>
-    <div>Access: {{ bookshelf.access }}</div>
-    <div>Updated: {{ bookshelf.updated }}</div>
-    <div>Created: {{ bookshelf.created }}</div>
-    <div>Volume count: {{ bookshelf.volumeCount }}</div>
-    <div>Volumes last updated: {{ bookshelf.volumesLastUpdated }}</div>
-</mat-card>
+<div class="list-item">
+    <mat-card *ngIf="bookshelf">
+        <mat-card-title>{{ bookshelf.title }}</mat-card-title>
+        <div>ID: {{ bookshelf.id }}</div>
+        <div>Access: {{ bookshelf.access }}</div>
+        <div>Updated: {{ bookshelf.updated }}</div>
+        <div>Created: {{ bookshelf.created }}</div>
+        <div>Volume count: {{ bookshelf.volumeCount }}</div>
+        <div>Volumes last updated: {{ bookshelf.volumesLastUpdated }}</div>
+    </mat-card>
+</div>
+<ng-container *ngIf="bookshelf?.volumes">
+    <div class="list-item" *ngFor="let volume of bookshelf?.volumes">
+        <app-volume [volume]="volume"></app-volume>
+    </div>
+</ng-container>

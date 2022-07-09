@@ -26,6 +26,11 @@ namespace GoogleBooks.Services
                 }
             }
 
+            if (bookshelf != null)
+            {
+                bookshelf.Volumes = (await this.CallGoogleApi<VolumeList>($"https://www.googleapis.com/books/v1/users/{userId}/bookshelves/{shelf}/volumes"))?.Items;
+            }
+
             return bookshelf;
         }
 

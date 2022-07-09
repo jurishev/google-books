@@ -3,6 +3,7 @@
 public class Bookshelf
 {
     public string UserId { get; set; }
+    public IEnumerable<Volume> Volumes { get; set; }
 
     public int Id { get; init; }
     public string Title { get; init; }

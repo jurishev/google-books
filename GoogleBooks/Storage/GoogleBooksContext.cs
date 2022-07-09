@@ -14,5 +14,6 @@ public class GoogleBooksContext : DbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.Entity<Bookshelf>().HasKey(nameof(Bookshelf.UserId), nameof(Bookshelf.Id));
+        builder.Entity<Bookshelf>().Ignore(b => b.Volumes);
     }
 }
