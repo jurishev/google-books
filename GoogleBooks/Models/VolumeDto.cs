@@ -12,6 +12,7 @@ public class VolumeDto
     public string Publisher { get; init; }
     public string PublishedDate { get; init; }
     public string Description { get; init; }
+    public string IndustryIdentifiers { get; init; }
     public string Categories { get; init; }
     public string PreviewLink { get; init; }
     public string SmallThumbnail { get; init; }
@@ -29,6 +30,7 @@ public class VolumeDto
             PublishedDate = this.PublishedDate,
             Description = this.Description,
             PreviewLink = this.PreviewLink,
+            IndustryIdentifiers = JsonSerializer.Deserialize<IEnumerable<IndustryIdentifier>>(this.IndustryIdentifiers),
             Categories = JsonSerializer.Deserialize<IEnumerable<string>>(this.Categories),
             ImageLinks = new ImageLinks
             {

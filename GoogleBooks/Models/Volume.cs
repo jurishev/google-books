@@ -17,6 +17,7 @@ public class Volume
         Publisher = this.VolumeInfo.Publisher,
         PublishedDate = this.VolumeInfo.PublishedDate,
         Description = this.VolumeInfo.Description,
+        IndustryIdentifiers = JsonSerializer.Serialize(this.VolumeInfo.IndustryIdentifiers),
         Categories = JsonSerializer.Serialize(this.VolumeInfo.Categories),
         PreviewLink = this.VolumeInfo.PreviewLink,
         SmallThumbnail = this.VolumeInfo.ImageLinks?.SmallThumbnail,
@@ -31,6 +32,7 @@ public class VolumeInfo
     public string Publisher { get; init; }
     public string PublishedDate { get; init; }
     public string Description { get; init; }
+    public IEnumerable<IndustryIdentifier> IndustryIdentifiers { get; init; }
     public IEnumerable<string> Categories { get; init; }
     public string PreviewLink { get; init; }
     public ImageLinks ImageLinks { get; init; }
@@ -40,6 +42,12 @@ public class ImageLinks
 {
     public string SmallThumbnail { get; init; }
     public string Thumbnail { get; init; }
+}
+
+public class IndustryIdentifier
+{
+    public string Type { get; init; }
+    public string Identifier { get; init; }
 }
 
 public class VolumeList

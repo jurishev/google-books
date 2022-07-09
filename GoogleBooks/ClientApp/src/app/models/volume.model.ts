@@ -7,6 +7,10 @@ export interface Volume {
         publisher: string,
         publishedDate: string,
         description: string,
+        industryIdentifiers: {
+            type: string,
+            identifier: string
+        }[],
         categories: string[],
         previewLink: string,
         imageLinks: {

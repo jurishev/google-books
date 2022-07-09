@@ -1,23 +1,26 @@
 <mat-card *ngIf="volume">
-    <mat-card-title>{{ volume.volumeInfo?.title }}</mat-card-title>
-    <mat-card-subtitle>{{ volume.volumeInfo?.authors | join }}</mat-card-subtitle>
+    <mat-card-title>{{ volume.volumeInfo.title }}</mat-card-title>
+    <mat-card-subtitle>{{ volume.volumeInfo.authors | join }}</mat-card-subtitle>
     <mat-card-content style="display: flex;">
-        <div style="margin-right: 14px;" *ngIf="volume.volumeInfo?.imageLinks?.thumbnail">
+        <div style="margin-right: 14px;" *ngIf="volume.volumeInfo.imageLinks?.thumbnail">
             <img [src]="volume.volumeInfo.imageLinks.thumbnail">
         </div>
         <div>
             <div class="details">
-                <div>Publisher: {{ volume.volumeInfo?.publisher }}</div>
-                <div>Published date: {{ volume.volumeInfo?.publishedDate }}</div>
-                <div>Categories: {{ volume.volumeInfo?.categories | join }}</div>
+                <div>Publisher: {{ volume.volumeInfo.publisher }}</div>
+                <div>Published date: {{ volume.volumeInfo.publishedDate }}</div>
+                <div>Categories: {{ volume.volumeInfo.categories | join }}</div>
+                <ng-container *ngFor="let id of volume.volumeInfo.industryIdentifiers">
+                    <div>{{ id.type }}: {{ id.identifier }}</div>
+                </ng-container>
                 <div>ID: {{ volume.id }}</div>
-                <div *ngIf="volume.volumeInfo?.previewLink">
+                <div *ngIf="volume.volumeInfo.previewLink">
                     <a [href]="volume.volumeInfo.previewLink">Preview link</a>
                 </div>
                 <div><a [href]="volume.selfLink">API link</a></div>
             </div>
-            <div *ngIf="volume.volumeInfo?.description" style="margin-top: 14px;">
-                {{ volume.volumeInfo?.description }}
+            <div *ngIf="volume.volumeInfo.description" style="margin-top: 14px;">
+                {{ volume.volumeInfo.description }}
             </div>
         </div>
     </mat-card-content>
