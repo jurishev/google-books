@@ -12,9 +12,9 @@ public class BookshelvesController : ControllerBase
     public BookshelvesController(IGoogleBooksService service) => this.googleBooksService = service;
 
     [HttpGet("user/{userId}")]
-    public async Task<ActionResult> GetBookshelves(string userId)
+    public async Task<ActionResult> GetBookshelfList(string userId)
     {
-        var bookshelves = await this.googleBooksService.GetBooksheves(userId);
+        var bookshelves = await this.googleBooksService.GetBookshefList(userId);
         return bookshelves is null ? this.NotFound() : this.Ok(bookshelves);
     }
 

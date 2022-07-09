@@ -34,7 +34,7 @@ namespace GoogleBooks.Services
             return bookshelf;
         }
 
-        public async Task<IEnumerable<Bookshelf>> GetBooksheves(string userId)
+        public async Task<IEnumerable<Bookshelf>> GetBookshefList(string userId)
         {
             var bookshelves = (await this.CallGoogleApi<BookshelfList>($"https://www.googleapis.com/books/v1/users/{userId}/bookshelves"))?.Items;
             if (bookshelves != null)
@@ -63,7 +63,7 @@ namespace GoogleBooks.Services
             return volume;
         }
 
-        public async Task<IEnumerable<Volume>> GetVolumes(VolumeQuery query)
+        public async Task<IEnumerable<Volume>> GetVolumeList(VolumeQuery query)
         {
             var volumes = this.storage.GetVolumeList(query);
             if (volumes is null)

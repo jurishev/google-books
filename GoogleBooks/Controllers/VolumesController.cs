@@ -13,9 +13,9 @@ public class VolumesController : ControllerBase
     public VolumesController(IGoogleBooksService service) => this.googleBooksService = service;
 
     [HttpGet]
-    public async Task<ActionResult> GetVolumes([FromQuery] VolumeQuery query)
+    public async Task<ActionResult> GetVolumeList([FromQuery] VolumeQuery query)
     {
-        var volumes = await this.googleBooksService.GetVolumes(query);
+        var volumes = await this.googleBooksService.GetVolumeList(query);
         return volumes is null ? this.NotFound() : this.Ok(volumes);
     }
 
