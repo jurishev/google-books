@@ -10,8 +10,8 @@ import { EntityService } from '../services/entity.service';
 export class ControlsComponent {
 
     volumeQuery = new VolumeQuery();
-
     volumeId = "";
+
     userId = "";
     shelf = "";
 
@@ -19,33 +19,30 @@ export class ControlsComponent {
         private readonly entityService: EntityService
     ) { }
 
-    isGetVolumeListDisabled(): boolean {
-        return !this.volumeQuery.title &&
+    isGetVolumesDisabled(): boolean {
+        return !this.volumeId &&
+            !this.volumeQuery.title &&
             !this.volumeQuery.author &&
             !this.volumeQuery.publisher;
     }
 
-    getVolumeList(): void {
-        if (!this.isGetVolumeListDisabled()) {
-            this.entityService.getVolumeList(this.volumeQuery);
+    getVolumes(): void {
+        if (!this.isGetVolumesDisabled()) {
+            if (!this.volumeId) {
+                this.entityService.getVolumeList(this.volumeQuery);
+            }
+            else {
+                this.entityService.getVolume(this.volumeId);
+            }
         }
     }
 
-    getVolume(): void {
-        if (this.volumeId) {
-            this.entityService.getVolume(this.volumeId);
-        }
-    }
-
-    getBookshelfList(): void {
-        if (this.userId) {
-            this.entityService.getBookshelfList(this.userId);
-        }
-    }
-
-    getBookshelf(): void {
+    getBookshelves(): void {
         if (this.userId && this.shelf) {
             this.entityService.getBookshelf(this.shelf, this.userId);
+        }
+        else if (this.userId) {
+            this.entityService.getBookshelfList(this.userId);
         }
     }
 }

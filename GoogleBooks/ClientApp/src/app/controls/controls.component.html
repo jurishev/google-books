@@ -4,47 +4,37 @@
 
 <mat-form-field>
     <mat-label>Title</mat-label>
-    <input matInput type="text" [(ngModel)]="volumeQuery.title">
+    <input matInput type="text" [(ngModel)]="volumeQuery.title" [disabled]="!!volumeId">
 </mat-form-field>
 
 <mat-form-field>
     <mat-label>Author</mat-label>
-    <input matInput type="text" [(ngModel)]="volumeQuery.author">
+    <input matInput type="text" [(ngModel)]="volumeQuery.author" [disabled]="!!volumeId">
 </mat-form-field>
 
 <mat-form-field>
     <mat-label>Subject</mat-label>
-    <input matInput type="text">
+    <input matInput type="text" [disabled]="!!volumeId">
 </mat-form-field>
 
 <mat-form-field>
     <mat-label>Publisher</mat-label>
-    <input matInput type="text" [(ngModel)]="volumeQuery.publisher">
+    <input matInput type="text" [(ngModel)]="volumeQuery.publisher" [disabled]="!!volumeId">
 </mat-form-field>
 
 <mat-form-field>
     <mat-label>ISBN</mat-label>
-    <input matInput type="text">
+    <input matInput type="text" [disabled]="!!volumeId">
 </mat-form-field>
 
-<button mat-raised-button color="primary" (click)="getVolumeList()"
-    [disabled]="isGetVolumeListDisabled()">Search</button>
-
 <mat-form-field>
-    <mat-label>Volume ID</mat-label>
+    <mat-label>ID</mat-label>
     <input matInput type="text" [(ngModel)]="volumeId">
 </mat-form-field>
 
-<button mat-raised-button color="primary" (click)="getVolume()" [disabled]="!volumeId">Search</button>
+<button mat-raised-button color="primary" (click)="getVolumes()" [disabled]="isGetVolumesDisabled()">Search</button>
 
 <h3>Bookshelves</h3>
-
-<mat-form-field>
-    <mat-label>User ID</mat-label>
-    <input matInput type="text" [(ngModel)]="userId">
-</mat-form-field>
-
-<button mat-raised-button color="primary" (click)="getBookshelfList()" [disabled]="!userId">Search</button>
 
 <mat-form-field>
     <mat-label>User ID</mat-label>
@@ -56,4 +46,4 @@
     <input matInput type="text" [(ngModel)]="shelf">
 </mat-form-field>
 
-<button mat-raised-button color="primary" (click)="getBookshelf()" [disabled]="!userId || !shelf">Search</button>
+<button mat-raised-button color="primary" (click)="getBookshelves()" [disabled]="!userId">Search</button>
