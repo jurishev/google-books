@@ -10,6 +10,8 @@ import { ViewState, ViewStateService } from './view-state.service';
 })
 export class EntityService {
 
+    private sortBy: "title" | "author" | undefined;
+
     private readonly bookshelfSubject = new BehaviorSubject<Bookshelf | undefined>(undefined);
     private readonly bookshelfListSubject = new BehaviorSubject<Bookshelf[] | undefined>([]);
 
@@ -44,7 +46,7 @@ export class EntityService {
 
     getVolumeList(query: VolumeQuery): void {
         this.set(ViewState.Spinner);
-        const terms = this.getTerms(query);
+        const terms = this.getSearchTerms(query);
         if (!terms) {
             console.warn("No search terms for volumes.");
             this.set(ViewState.NoResults);
@@ -53,25 +55,10 @@ export class EntityService {
         fetch(`api/volumes?${terms}`)
             .then(response => response.ok ? response.json() : undefined)
             .then(json => {
-                this.volumeListSubject.next(json as Volume[]);
+                this.emitVolumes(json as Volume[]);
                 this.set(json ? ViewState.VolumeList : ViewState.NoResults);
             })
             .catch(error => console.error(error));
-    }
-
-    private getTerms(query: VolumeQuery): string {
-        const terms = new Array<string>();
-        const addTerm = function (key: string, value: string) {
-            if (value) {
-                terms.push(`${key}=${value}`);
-            }
-        }
-        addTerm("title", query.title);
-        addTerm("author", query.author);
-        addTerm("subject", query.subject);
-        addTerm("publisher", query.publisher);
-        addTerm("isbn", query.isbn);
-        return terms.join("&");
     }
 
     getBookshelf(shelf: string, userId: string): void {
@@ -94,6 +81,60 @@ export class EntityService {
                 this.set(json ? ViewState.BookshelfList : ViewState.NoResults);
             })
             .catch(error => console.error(error));
+    }
+
+    sortVolumeListBy(sort: "title" | "author" | undefined): void {
+        this.sortBy = sort;
+        this.emitVolumes(this.volumeListSubject.value);
+    }
+
+    private emitVolumes(volumes: Volume[] | undefined): void {
+        if (this.sortBy) {
+            this.sortVolumes(volumes);
+        }
+        this.volumeListSubject.next(volumes);
+    }
+
+    private sortVolumes(volumes: Volume[] | undefined): void {
+        if (this.sortBy === "title") {
+            volumes?.sort((v1, v2) => v1.volumeInfo.title.localeCompare(v2.volumeInfo.title));
+        }
+        else if (this.sortBy === "author") {
+            volumes?.sort((v1, v2) => {
+                if (!v1.volumeInfo.authors && !v2.volumeInfo.authors) {
+                    return 0;
+                }
+                if (!v1.volumeInfo.authors) {
+                    return -1;
+                }
+                if (!v2.volumeInfo.authors) {
+                    return 1;
+                }
+                var min = Math.min(v1.volumeInfo.authors.length, v2.volumeInfo.authors.length);
+                for (let i = 0; i < min; i++) {
+                    const cmp = v1.volumeInfo.authors[i].localeCompare(v2.volumeInfo.authors[i]);
+                    if (cmp != 0) {
+                        return cmp;
+                    }
+                }
+                return 0;
+            });
+        }
+    }
+
+    private getSearchTerms(query: VolumeQuery): string {
+        const terms = new Array<string>();
+        const addTerm = function (key: string, value: string) {
+            if (value) {
+                terms.push(`${key}=${value}`);
+            }
+        }
+        addTerm("title", query.title);
+        addTerm("author", query.author);
+        addTerm("subject", query.subject);
+        addTerm("publisher", query.publisher);
+        addTerm("isbn", query.isbn);
+        return terms.join("&");
     }
 
     private set(state: ViewState): void {

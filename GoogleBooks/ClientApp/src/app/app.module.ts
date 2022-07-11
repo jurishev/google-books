@@ -6,10 +6,9 @@ import { FormsModule } from "@angular/forms";
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
@@ -40,10 +39,9 @@ import { SpinnerComponent } from './spinner/spinner.component';
         MatIconModule,
         MatButtonModule,
         MatCardModule,
-        MatDividerModule,
         MatFormFieldModule,
         MatInputModule,
-        MatListModule,
+        MatSelectModule,
         MatProgressSpinnerModule,
     ],
     bootstrap: [AppComponent]

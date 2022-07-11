@@ -15,6 +15,8 @@ export class ControlsComponent {
     userId = "";
     shelf = "";
 
+    sortBy: "title" | "author" | undefined;
+
     constructor(
         private readonly entityService: EntityService
     ) { }
@@ -46,5 +48,9 @@ export class ControlsComponent {
         else if (this.userId) {
             this.entityService.getBookshelfList(this.userId);
         }
+    }
+
+    onSortByChange(): void {
+        this.entityService.sortVolumeListBy(this.sortBy);
     }
 }

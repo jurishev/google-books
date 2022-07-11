@@ -32,6 +32,14 @@
     <input matInput type="text" [(ngModel)]="volumeId">
 </mat-form-field>
 
+<mat-form-field>
+    <mat-label>Sort by</mat-label>
+    <mat-select [(ngModel)]="sortBy" (selectionChange)="onSortByChange()">
+        <mat-option value="title">Title</mat-option>
+        <mat-option value="author">Author</mat-option>
+    </mat-select>
+</mat-form-field>
+
 <button mat-raised-button color="primary" (click)="getVolumes()" [disabled]="isGetVolumesDisabled()">Search</button>
 
 <h3>Bookshelves</h3>
