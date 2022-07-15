@@ -1,6 +1,8 @@
 # Google Books API Client
 
-A full stack interview project
+A full stack interview project.
+
+![UI](screenshot.png)
 
 ## Summary
 
